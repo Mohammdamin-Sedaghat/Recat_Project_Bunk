@@ -1,34 +1,31 @@
-import { useState } from "react"
+import React from "react"
 
 export default function Main() {
-    const [ingredients, setIngredients] = useState(["oregano", "tomato", "black"])
 
-    const ingredientListItem = ingredients.map(ingredient => {
-        return <li key={ingredient}>{ingredient}</li>
-    })
+    const [ingredients, setIngredients] = React.useState(["chicken", "cum"])
 
-    function handleSubmit(event) {
-        event.preventDefault()
-        const formData = new FormData(event.currentTarget)
-        const ingredientName = formData.get("ingredient")
-        
-        setIngredients(prevIng => [...prevIng, ingredientName])
+    const ingredientsListItems = ingredients.map(ingredient => (
+        <li key={ingredient}>{ingredient}</li>
+    ))
+
+    function newIngredient(formData) {
+        const newIngredient = formData.get("ingredient")
+        setIngredients(prevIngredients => [...prevIngredients, newIngredient])
     }
 
     return (
         <main>
-            <form onSubmit={handleSubmit}>
-                <input 
-                    type="text" 
-                    aria-label="Add ingredient" 
+            <form action={newIngredient} className="add-ingredient-form">
+                <input
+                    type="text"
                     placeholder="e.g. oregano"
-                    name="ingredient" 
+                    aria-label="Add ingredient"
+                    name="ingredient"
                 />
-                <button>+ Add Ingrediant</button>
+                <button>Add ingredient</button>
             </form>
-
             <ul>
-                { ingredientListItem }
+                {ingredientsListItems}
             </ul>
         </main>
     )
