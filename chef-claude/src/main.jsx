@@ -5,7 +5,7 @@ export default function Main() {
     const [ingredients, setIngredients] = React.useState(["chicken", "cum"])
 
     const ingredientsListItems = ingredients.map(ingredient => (
-        <li key={ingredient}>{ingredient}</li>
+        <li key={ingredient} className="ingredient_list">{ingredient}</li>
     ))
 
     function newIngredient(formData) {
@@ -24,9 +24,20 @@ export default function Main() {
                 />
                 <button>Add ingredient</button>
             </form>
-            <ul>
-                {ingredientsListItems}
-            </ul>
+            <section>
+                <h2>Ingredients on hand:</h2>
+                <ul>
+                    {ingredientsListItems}
+                </ul>
+                <div className="recepie_box">
+                    <div>
+                        <p className="ready_for_recepie">Ready for a recepie?</p>
+                        <p className="generate_text">Generate a recepie from your list of ingredients.</p>
+                    </div>
+                    <button>Get a recepie</button>
+                </div>
+            </section>
+            
         </main>
     )
 }
