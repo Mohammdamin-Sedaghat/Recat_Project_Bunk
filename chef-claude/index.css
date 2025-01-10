@@ -53,7 +53,11 @@ form > button {
     border-radius: 6px;
     width: 183px;
     font-size: 14px;
+    border: none;
+}
 
+button:active {
+    scale: 0.98;
 }
 
 .recepie_box {
@@ -63,6 +67,8 @@ form > button {
     height: 110px;
     border-radius: 8px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .recepie_box > button {
@@ -75,7 +81,9 @@ form > button {
     font-size: 14px;
     color: #FAFAF8;
     border-radius: 6px;
+    cursor: pointer;
 }
+
 
 .recepie_box > div {
     flex-grow: 1;
