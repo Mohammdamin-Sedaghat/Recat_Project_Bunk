@@ -1,16 +1,20 @@
-import React from "react"
+import { useState} from "react"
+import ClaudeRecepie from "./ClaudeRecepie"
+import IngredientList from "./IngredientList"
 
 export default function Main() {
+    const [ingredients, setIngredients] = useState([])
+    const [recepieShown, setRecepieShown] = useState(false)
 
-    const [ingredients, setIngredients] = React.useState([])
-
-    const ingredientsListItems = ingredients.map(ingredient => (
-        <li key={ingredient} className="ingredient_list">{ingredient}</li>
-    ))
+    
 
     function newIngredient(formData) {
         const newIngredient = formData.get("ingredient")
         setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+    }
+
+    function toggleRecepie() {
+        setRecepieShown(prevRecepieShown => !prevRecepieShown)
     }
 
     return (
@@ -25,24 +29,15 @@ export default function Main() {
                 />
                 <button>Add ingredient</button>
             </form>
-            {ingredients.length > 0  && 
-                <section>
-                    <h2>Ingredients on hand:</h2>
-                    <ul>
-                        {ingredientsListItems}
-                    </ul>
-                    {ingredients.length > 4 &&
-                        <div className="recepie_box">
-                            <div>
-                                <p className="ready_for_recepie">Ready for a recepie?</p>
-                                <p className="generate_text">Generate a recepie from your list of ingredients.</p>
-                            </div>
-                            <button>Get a recepie</button>
-                        </div>
-                    }
-                </section>
+            {ingredients.length > 0  &&
+                <IngredientList
+                    ingredients={ingredients} 
+                    toggleRecepie={toggleRecepie} 
+                />
             }
-            
+            {recepieShown &&
+                <ClaudeRecepie />
+            }
         </main>
     )
 }

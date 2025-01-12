@@ -26,7 +26,10 @@ header > span {
 }
 
 main {
-    padding: 70px 10px 30px;
+    padding: 70px 30px 30px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 form {
@@ -44,7 +47,7 @@ form > input {
     font-size: 1rem;
     box-shadow: 0px 1px 2px 0px #0000000D;
     min-width: 150px;
-    max-width: 400px;
+    /* max-width: 400px; */
 }
 
 form > button {
