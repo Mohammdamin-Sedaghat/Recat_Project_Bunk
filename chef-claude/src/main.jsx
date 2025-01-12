@@ -1,11 +1,12 @@
 import { useState} from "react"
 import ClaudeRecepie from "./ClaudeRecepie"
 import IngredientList from "./IngredientList"
+import { getRecepie } from "../backend"
 
 export default function Main() {
     const [ingredients, setIngredients] = useState([])
-    const [recepieShown, setRecepieShown] = useState(false)
-
+    // const [recepieShown, setRecepieShown] = useState(false)
+    const [recepie, setRecepie] = useState([])
     
 
     function newIngredient(formData) {
@@ -13,8 +14,9 @@ export default function Main() {
         setIngredients(prevIngredients => [...prevIngredients, newIngredient])
     }
 
-    function toggleRecepie() {
-        setRecepieShown(prevRecepieShown => !prevRecepieShown)
+    async function toggleRecepie() {
+        const markdown = await getRecepie(ingredients)
+        setRecepie(markdown)
     }
 
     return (
@@ -35,8 +37,10 @@ export default function Main() {
                     toggleRecepie={toggleRecepie} 
                 />
             }
-            {recepieShown &&
-                <ClaudeRecepie />
+            {recepie &&
+                <ClaudeRecepie 
+                    markdown = {recepie}
+                />
             }
         </main>
     )
