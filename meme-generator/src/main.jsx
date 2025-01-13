@@ -1,7 +1,7 @@
 export default function Main() {
     return (
         <main>
-          <form>
+          <div className="form">
             <label>
               <span>Top Text</span>
               <input 
@@ -20,13 +20,15 @@ export default function Main() {
             </label>
 
             <button>Get new meme image 🖼</button>
-          </form>
+          </div>
 
           <div className="meme">
             <img 
               src="http://i.imgflip.com/1bij.jpg"
               aria-label="meme-image"
             />
+            <span className="top">SHUT UP</span>
+            <span className="bottom">AND GET MY MONEY</span>
           </div>
         </main>
     )
