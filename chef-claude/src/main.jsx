@@ -6,7 +6,7 @@ import { getRecepie } from "../backend"
 export default function Main() {
     const [ingredients, setIngredients] = useState([])
     // const [recepieShown, setRecepieShown] = useState(false)
-    const [recepie, setRecepie] = useState([])
+    const [recepie, setRecepie] = useState("")
     
 
     function newIngredient(formData) {
@@ -15,6 +15,7 @@ export default function Main() {
     }
 
     async function toggleRecepie() {
+        console.log("Process Started")
         const markdown = await getRecepie(ingredients)
         setRecepie(markdown)
     }
@@ -37,7 +38,7 @@ export default function Main() {
                     toggleRecepie={toggleRecepie} 
                 />
             }
-            {recepie &&
+            {recepie != "" &&
                 <ClaudeRecepie 
                     markdown = {recepie}
                 />

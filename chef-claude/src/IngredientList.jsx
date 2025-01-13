@@ -5,7 +5,7 @@ export default function IngredientList(props) {
     ))
 
     return (
-        <section>
+        <section className="ingredients_section">
             <h2>Ingredients on hand:</h2>
             <ul>
                 {ingredientsListItems}

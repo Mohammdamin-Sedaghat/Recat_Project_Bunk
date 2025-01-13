@@ -111,3 +111,13 @@ button:active {
     color: #475467;
     line-height: 28px;
 }
+
+.recepie {
+    color: #475467;
+    line-height: 28px;
+    font-size: 18px;
+}
+
+.ingredients_section {
+    color: #475467;
+}
