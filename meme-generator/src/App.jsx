@@ -4,7 +4,7 @@ import Header from "./Header"
 
 createRoot(document.getElementById('root')).render(
   <>
-    <Main />
     <Header />
+    <Main />
   </>
 )
