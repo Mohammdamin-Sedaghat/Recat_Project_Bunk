@@ -1,5 +1,5 @@
-import { createRoot } from 'react-dom/client'
-
-createRoot(document.getElementById('root')).render(
-  <h2>Hi</h2>
-)
+export default function App() {
+    return (
+        <h2>This is Main</h2>
+    )
+}
