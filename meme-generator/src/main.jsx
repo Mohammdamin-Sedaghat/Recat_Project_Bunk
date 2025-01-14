@@ -1,4 +1,22 @@
+import { useState } from "react"
+
 export default function Main() {
+    const [meme, setMeme] = useState({
+      topText: "One does not Simply",
+      bottomText: "Walk into a Mordor",
+      imgUrl: "http://i.imgflip.com/1bij.jpg",
+    })
+
+    function handleChange(event) {
+      const {value, name} = event.currentTarget
+      if (name === "top-text"){
+        setMeme((prevMeme) => ({ ...prevMeme, topText: value }))
+      } else {
+        setMeme((prevMeme) => ({ ...prevMeme, bottomText: value }))
+      }
+      
+    }
+
     return (
         <main>
           <div className="form">
@@ -6,8 +24,9 @@ export default function Main() {
               <span>Top Text</span>
               <input 
                 type="text"
-                placeholder="Shut up"
+                placeholder={meme.topText}
                 name="top-text"
+                onChange={handleChange}
               />
             </label>
 
@@ -15,7 +34,8 @@ export default function Main() {
               <span>Bottom Text</span>
               <input 
                 type="text"
-                placeholder="And take my money"
+                placeholder={meme.bottomText}
+                onChange={handleChange}
               ></input>
             </label>
 
@@ -24,11 +44,11 @@ export default function Main() {
 
           <div className="meme">
             <img 
-              src="http://i.imgflip.com/1bij.jpg"
+              src={meme.imgUrl}
               aria-label="meme-image"
             />
-            <span className="top">SHUT UP</span>
-            <span className="bottom">AND GET MY MONEY</span>
+            <span className="top">{meme.topText.toUpperCase()}</span>
+            <span className="bottom">{meme.bottomText.toUpperCase()}</span>
           </div>
         </main>
     )
