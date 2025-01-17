@@ -12,7 +12,7 @@ export default function IngredientList(props) {
             </ul>
             {ingredientsListItems.length > 3 &&
                 <div className="recepie_box">
-                    <div>
+                    <div ref={props.ref}>
                         <p className="ready_for_recepie">Ready for a recepie?</p>
                         <p className="generate_text">Generate a recepie from your list of ingredients.</p>
                     </div>

@@ -1,4 +1,4 @@
-import { useState} from "react"
+import { useEffect, useRef, useState} from "react"
 import ClaudeRecepie from "./ClaudeRecepie"
 import IngredientList from "./IngredientList"
 import { getRecepie } from "../../backend"
@@ -19,6 +19,12 @@ export default function Main() {
         const markdown = await getRecepie(ingredients)
         setRecepie(markdown)
     }
+    const recepieSection = useRef(null)
+    useEffect(()=>{
+        if (recepie !== "" && recepieSection?.current){
+            recepieSection.current.scrollIntoView({behavior:"smooth"})
+        }
+    }, [recepie])
 
     return (
         <main>
@@ -34,6 +40,7 @@ export default function Main() {
             </form>
             {ingredients.length > 0  &&
                 <IngredientList
+                    ref = {recepieSection}
                     ingredients={ingredients} 
                     toggleRecepie={toggleRecepie} 
                 />
