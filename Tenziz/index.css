@@ -1,25 +1,29 @@
-body, html {
-    margin: 0px;
-    padding: 0px;
+* {
+    box-sizing: border-box;
 }
 
 body {
+    margin: 0px;
     background-color: #0B2434;
-    height: 100vh;
     padding: 30px 20px;
+    height: 100vh;
+
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 #root {
-    background-color: #F5F5F5;
     height: 100%;
     width: 100%;
     max-width: 500px;
     max-height: 500px;
-    
+}
+
+main {
+    background-color: #F5F5F5;
+    height: 100%;
     border-radius: 10px;
-    box-sizing: content-box;
 }
 
