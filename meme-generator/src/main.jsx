@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function Main() {
     const [meme, setMeme] = useState({
@@ -6,15 +6,31 @@ export default function Main() {
       bottomText: "Walk into a Mordor",
       imgUrl: "http://i.imgflip.com/1bij.jpg",
     })
+    const [arrayOfMemes, setArrayOfMemes] = useState(["http://i.imgflip.com/1bij.jpg"])
 
     function handleChange(event) {
       const {value, name} = event.currentTarget
-      if (name === "top-text"){
-        setMeme((prevMeme) => ({ ...prevMeme, topText: value }))
-      } else {
-        setMeme((prevMeme) => ({ ...prevMeme, bottomText: value }))
-      }
+      setMeme((prevMeme) => ({
+          ...prevMeme, 
+          [name]: value 
+        }))
       
+    }
+
+    useEffect(()=>{
+      fetch("https://api.imgflip.com/get_memes")
+        .then(res => res.json())
+          .then(data => {
+            setArrayOfMemes(data.data.memes.map(meme => meme.url))})
+    }, [0])
+
+    function handleNewMeme() {
+      setMeme(prevMeme => {
+        return ({
+          ...prevMeme, 
+          imgUrl: arrayOfMemes[Math.floor(Math.random() * arrayOfMemes.length)]
+        })
+      })
     }
 
     return (
@@ -25,8 +41,9 @@ export default function Main() {
               <input 
                 type="text"
                 placeholder={meme.topText}
-                name="top-text"
+                name="topText"
                 onChange={handleChange}
+                value = {meme.topText}
               />
             </label>
 
@@ -36,10 +53,12 @@ export default function Main() {
                 type="text"
                 placeholder={meme.bottomText}
                 onChange={handleChange}
+                name="bottomText"
+                value = {meme.bottomText}
               ></input>
             </label>
 
-            <button>Get new meme image 🖼</button>
+            <button onClick={handleNewMeme}>Get new meme image 🖼</button>
           </div>
 
           <div className="meme">
