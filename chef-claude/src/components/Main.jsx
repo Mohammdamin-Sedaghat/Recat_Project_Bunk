@@ -1,7 +1,7 @@
 import { useState} from "react"
 import ClaudeRecepie from "./ClaudeRecepie"
 import IngredientList from "./IngredientList"
-import { getRecepie } from "../backend"
+import { getRecepie } from "../../backend"
 
 export default function Main() {
     const [ingredients, setIngredients] = useState([])
