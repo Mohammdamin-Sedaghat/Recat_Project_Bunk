@@ -16,11 +16,31 @@ export default function App() {
     }
 
     function rollNewDice() {
-        setDieValues(generateAllNewDie())
+        setDieValues(prevDieValue => {
+            return prevDieValue.map(die =>{
+                if (!die.isHeld) {
+                    return {
+                        ...die,
+                        value: Math.ceil(Math.random() * 6)
+                    }
+                }
+                return {...die}
+            })
+        })
     }
 
     function handleClick(id) {
-        console.log(id)
+        setDieValues(prevDie => {
+            return prevDie.map(die =>{
+                if (die.id === id) {
+                    return {
+                        ...die, 
+                        isHeld: !die.isHeld
+                    }
+                }
+                return {...die}
+            })
+        })
     }
     
     const dieElements = dieValues.map(die => <Die key={die.id} onClick={()=>{handleClick(die.id)}} obj={die} />)
