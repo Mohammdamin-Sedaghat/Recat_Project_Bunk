@@ -2,30 +2,35 @@ import Die from "./Die"
 import Header from "./Header"
 import { useState } from "react"
 import { nanoid } from "nanoid"
+import Confetti from "react-confetti"
 
 export default function App() {
-    const [dieValues, setDieValues] = useState(generateAllNewDie())
+    const [dice, setDice] = useState(generateNewDice)
 
     //checking if the game is won.
-    const gameOne = dieValues.every(die => 
-        (die.isHeld && (die.value === dieValues[0].value)))
+    const gameWon = dice.every(die => 
+        (die.isHeld && (die.value === dice[0].value)))
 
     function rollNewDice() {
-        setDieValues(prevDieValue => {
-            return prevDieValue.map(die =>{
-                if (!die.isHeld) {
-                    return {
-                        ...die,
-                        value: Math.ceil(Math.random() * 6)
+        if (!gameWon) {
+            setDice(prevDieValue => {
+                return prevDieValue.map(die =>{
+                    if (!die.isHeld) {
+                        return {
+                            ...die,
+                            value: Math.ceil(Math.random() * 6)
+                        }
                     }
-                }
-                return die
-            })
-        })
+                    return die
+                })
+            }) 
+        } else {
+            setDice(generateNewDice())
+        }
     }
 
     function handleClick(id) {
-        setDieValues(prevDie => {
+        setDice(prevDie => {
             return prevDie.map(die =>{
                 if (die.id === id) {
                     return {
@@ -38,22 +43,24 @@ export default function App() {
         })
     }
     
-    const dieElements = dieValues.map(die => <Die key={die.id} onClick={()=>{handleClick(die.id)}} obj={die} />)
+    const dieElements = dice.map(die => <Die key={die.id} onClick={()=>{handleClick(die.id)}} obj={die} />)
 
     return (
         <main>
+            {gameWon ? <Confetti recycle={false} /> : undefined}
             <Header />
             <div className="die-container">
                 {dieElements}
             </div>
             <button className="roll-butt" onClick={rollNewDice}>
-                {gameOne ? "New Game":"Roll"}
+                {gameWon ? "New Game":"Roll"}
             </button>
         </main>
     )
 }
 
-function generateAllNewDie() {
+function generateNewDice() {
+    console.log("hi")
     return new Array(10)
         .fill(0)
         .map(()=> ({
