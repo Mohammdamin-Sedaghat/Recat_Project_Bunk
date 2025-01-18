@@ -6,15 +6,9 @@ import { nanoid } from "nanoid"
 export default function App() {
     const [dieValues, setDieValues] = useState(generateAllNewDie())
 
-    function generateAllNewDie() {
-        return new Array(10)
-            .fill(0)
-            .map(()=> ({
-                value: Math.ceil(Math.random() * 6), 
-                isHeld: false,
-                id: nanoid()
-            }))
-    }
+    //checking if the game is won.
+    const gameOne = dieValues.every(die => 
+        (die.isHeld && (die.value === dieValues[0].value)))
 
     function rollNewDice() {
         setDieValues(prevDieValue => {
@@ -25,7 +19,7 @@ export default function App() {
                         value: Math.ceil(Math.random() * 6)
                     }
                 }
-                return {...die}
+                return die
             })
         })
     }
@@ -39,7 +33,7 @@ export default function App() {
                         isHeld: !die.isHeld
                     }
                 }
-                return {...die}
+                return die
             })
         })
     }
@@ -52,7 +46,19 @@ export default function App() {
             <div className="die-container">
                 {dieElements}
             </div>
-            <button className="roll-butt" onClick={rollNewDice}>Roll</button>
+            <button className="roll-butt" onClick={rollNewDice}>
+                {gameOne ? "New Game":"Roll"}
+            </button>
         </main>
     )
+}
+
+function generateAllNewDie() {
+    return new Array(10)
+        .fill(0)
+        .map(()=> ({
+            value: Math.ceil(Math.random() * 6), 
+            isHeld: false,
+            id: nanoid()
+        }))
 }
