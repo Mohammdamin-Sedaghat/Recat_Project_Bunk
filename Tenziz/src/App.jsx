@@ -1,4 +1,5 @@
 import Die from "./Die"
+import Header from "./Header"
 import { useState } from "react"
 import { nanoid } from "nanoid"
 
@@ -47,6 +48,7 @@ export default function App() {
 
     return (
         <main>
+            <Header />
             <div className="die-container">
                 {dieElements}
             </div>

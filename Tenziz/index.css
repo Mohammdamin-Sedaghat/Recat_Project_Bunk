@@ -35,14 +35,35 @@ button:active {
     max-height: 500px;
 }
 
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+h1 {
+    margin: 0px;
+}
+
+p {
+    margin: 0px;
+    width: 330px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #4A4E74;
+}
+
 main {
     background-color: #F5F5F5;
     height: 100%;
     border-radius: 10px;
+    padding: 30px 0px;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
 }
 
