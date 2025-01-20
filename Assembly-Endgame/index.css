@@ -1,0 +1,12 @@
+*{
+    font-family: "Hanken Grotesk", Arial, sans-serif;
+}
+
+body, html {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #282726;
+}
