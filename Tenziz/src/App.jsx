@@ -4,6 +4,12 @@ import { useState, useRef, useEffect } from "react"
 import { nanoid } from "nanoid"
 import Confetti from "react-confetti"
 
+/*
+Improvement Oportunities: 
+    Make the dice look like dice. 
+    Add a leaderboard based on timer or roll count. 
+*/
+
 export default function App() {
     const [dice, setDice] = useState(generateNewDice)
     const buttonRef = useRef(null)
