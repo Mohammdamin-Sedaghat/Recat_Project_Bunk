@@ -1,6 +1,8 @@
 import languages from "../languages.json"
+import { useState } from "react"
 
 export default function App() {
+  const [currentWords, setCurrentWord] = useState("React")
   const languageElments = languages.map((language, i) => {
     return (
       <span
@@ -9,6 +11,10 @@ export default function App() {
       >
         {language.name}
       </span>)
+  })
+
+  const wordList = currentWords.toUpperCase().split("").map((letter, i) => {
+    return <span key={i} className="letter">{letter}</span>
   })
   
   return (
@@ -23,6 +29,9 @@ export default function App() {
       </section>
       <section className="languages">
         {languageElments}
+      </section>
+      <section className="currentWord">
+        {wordList}
       </section>
     </main>
   )

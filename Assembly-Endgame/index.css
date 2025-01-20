@@ -70,3 +70,25 @@ section.languages > span {
     font-weight: bold;
     font-size: 0.75rem;
 }
+
+.currentWord {
+    max-width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.letter {
+    background-color: #323232;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 40px;
+    width: 40px;
+    margin-left: 2px;
+    border-bottom: 1px solid #F9F4DA;
+
+    font-size: 1.1rem;
+    font-weight: bold;
+}
