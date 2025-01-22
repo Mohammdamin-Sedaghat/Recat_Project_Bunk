@@ -2,7 +2,9 @@ import languages from "../languages.json"
 import { useState } from "react"
 
 export default function App() {
-  const [currentWords, setCurrentWord] = useState("React")
+  const [currentWords, setCurrentWord] = useState("React".toUpperCase())
+  const [guessed, setGuessed] = useState([])
+  const alphabet = "abcdefghijklmnopqrstuvwxyz"
   const languageElments = languages.map((language, i) => {
     return (
       <span
@@ -13,8 +15,30 @@ export default function App() {
       </span>)
   })
 
+  function handleLetter(letter) {
+    setGuessed(prevGuess => [...prevGuess.filter(l => l !== letter), letter])
+  }
+
   const wordList = currentWords.toUpperCase().split("").map((letter, i) => {
-    return <span key={i} className="letter">{letter}</span>
+    return <span 
+      key={i} 
+      className="letter"
+      >{guessed.includes(letter) ? letter : ""}</span>
+  })
+
+  const alphabetList = alphabet.toUpperCase().split('').map(letter => {
+    return (
+    <button 
+      key={letter} 
+      onClick={()=>handleLetter(letter)}
+      className={`keyboardLetters ${guessed.includes(letter) ? 
+                                      (currentWords.includes(letter) ?
+                                        "correct"
+                                        : "false")
+                                      : ""}`}
+    >
+      {letter}
+    </button>)
   })
   
   return (
@@ -33,6 +57,10 @@ export default function App() {
       <section className="currentWord">
         {wordList}
       </section>
+      <section className="keyboard">
+        {alphabetList}
+      </section>
+      <button className="newGame">New Game</button>
     </main>
   )
 }

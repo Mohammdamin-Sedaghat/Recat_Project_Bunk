@@ -18,7 +18,7 @@ main {
 
     display: flex;
     flex-direction: column;
-    justify-self: center;
+    justify-content: space-evenly;
     align-items: center;
 
 }
@@ -91,4 +91,46 @@ section.languages > span {
 
     font-size: 1.1rem;
     font-weight: bold;
+}
+
+.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    max-width: 480px;
+    gap: 8px;
+    margin-block: 20px;
+}
+
+.keyboardLetters {
+    width: 40px;
+    height: 40px;
+    background-color: #FCBA29;
+    border: 1px solid #D7D7D7;
+    border-radius: 2px;
+
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.newGame {
+    background-color: #11B5E5;
+    width: 220px;
+    height: 40px;
+    border: 1px solid #D7D7D7;
+    border-radius: 4px;
+
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.false {
+    background-color: red;
+}
+
+.correct {
+    background-color: #10A95B;
 }
