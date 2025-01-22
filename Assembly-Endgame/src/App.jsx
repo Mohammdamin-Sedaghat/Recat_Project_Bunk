@@ -5,11 +5,14 @@ export default function App() {
   const [currentWords, setCurrentWord] = useState("React".toUpperCase())
   const [guessed, setGuessed] = useState([])
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
+  const wrongGuessCount = guessed.filter(guess => !currentWords.includes(guess)).length
+  console.log(wrongGuessCount)
   const languageElments = languages.map((language, i) => {
     return (
       <span
-        key={i}
+        key={language}
         style={{backgroundColor: language.backgroundColor, color:language.color}}
+        className={i < wrongGuessCount ? "lost" : ""}
       >
         {language.name}
       </span>)
