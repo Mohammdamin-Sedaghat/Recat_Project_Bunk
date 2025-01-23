@@ -37,12 +37,12 @@ h1 {
     font-size: 0.875rem;
     max-width: 350px;
     color: #8E8E8E;
-    margin-block: 40px;
+    margin-block: 10px;
 }
 
 .state {
     color: #F9F4DA;
-    margin-block: 50px;
+    margin-block: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,7 +95,7 @@ section.currentWord {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-block: 40px;
+    margin-block: 20px;
 }
 
 .letter {
@@ -120,7 +120,7 @@ section.currentWord {
 
     max-width: 480px;
     gap: 8px;
-    margin-block: 20px;
+    margin-block: 10px;
 }
 
 .keyboardLetters {
@@ -150,7 +150,7 @@ section.currentWord {
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
-    margin-top: 30px;
+    margin-top: 5px;
 }
 
 .false {

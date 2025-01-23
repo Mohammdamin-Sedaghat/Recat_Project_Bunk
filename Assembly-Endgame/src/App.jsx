@@ -2,6 +2,7 @@ import languages from "../languages.json"
 import words from "./words.json"
 import TalkingSection from "./TalkingSection"
 import { useState } from "react"
+import Confetti from "react-confetti"
 
 export default function App() {
   const [currentWords, setCurrentWord] = useState(getRandomWord)
@@ -38,7 +39,8 @@ export default function App() {
     return <span 
       key={i} 
       className="letter"
-      >{guessed.includes(letter) ? letter : ""}</span>
+      style={(isGameOver && !guessed.includes(letter)) ? {color:"#BA2A2A"} : null}
+      >{guessed.includes(letter) || isGameOver ? letter : ""}</span>
   })
 
   const alphabetList = alphabet.toUpperCase().split('').map(letter => {
@@ -60,6 +62,7 @@ export default function App() {
   
   return (
     <main>
+      {isWon && <Confetti recycle={false}/>}
       <header>
           <h1>Assembly Endgame</h1>
           <p className="header-text">Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
