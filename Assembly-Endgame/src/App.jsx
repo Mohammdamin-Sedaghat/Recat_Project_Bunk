@@ -1,16 +1,23 @@
 import languages from "../languages.json"
+import words from "./words.json"
+import TalkingSection from "./TalkingSection"
 import { useState } from "react"
 
 export default function App() {
-  const [currentWords, setCurrentWord] = useState("React".toUpperCase())
+  const [currentWords, setCurrentWord] = useState(getRandomWord)
   const [guessed, setGuessed] = useState([])
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
   const wrongGuessCount = guessed.filter(guess => !currentWords.includes(guess)).length
-  console.log(wrongGuessCount)
+
+  const isLost = wrongGuessCount >= languages.length - 1
+  const isWon = currentWords.split('').every(letter => guessed.includes(letter))
+  const isGameOver = isLost || isWon
+  const isLangGone = guessed.length > 0 && !currentWords.includes(guessed[guessed.length - 1])
+
   const languageElments = languages.map((language, i) => {
     return (
       <span
-        key={language}
+        key={language.name}
         style={{backgroundColor: language.backgroundColor, color:language.color}}
         className={i < wrongGuessCount ? "lost" : ""}
       >
@@ -20,6 +27,11 @@ export default function App() {
 
   function handleLetter(letter) {
     setGuessed(prevGuess => [...prevGuess.filter(l => l !== letter), letter])
+  }
+
+  function newGame() {
+    setCurrentWord(getRandomWord);
+    setGuessed([]);
   }
 
   const wordList = currentWords.toUpperCase().split("").map((letter, i) => {
@@ -33,7 +45,9 @@ export default function App() {
     return (
     <button 
       key={letter} 
-      onClick={()=>handleLetter(letter)}
+      onClick={()=> handleLetter(letter)}
+      disabled={isGameOver}
+      aria-disabled={isGameOver || guessed.includes(letter)}
       className={`keyboardLetters ${guessed.includes(letter) ? 
                                       (currentWords.includes(letter) ?
                                         "correct"
@@ -50,10 +64,10 @@ export default function App() {
           <h1>Assembly Endgame</h1>
           <p className="header-text">Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
       </header>
-      <section className="state">
-        <span>You win!</span>
-        <span style={{fontSize:"1rem"}}>Well done! 🎉</span>
-      </section>
+      <TalkingSection 
+        msg={isWon ? "won" : isLost ? "lost" : isLangGone ? "lang" : "none"}
+        lang={isLangGone ? languages[wrongGuessCount - 1] : null}
+        />
       <section className="languages">
         {languageElments}
       </section>
@@ -63,7 +77,11 @@ export default function App() {
       <section className="keyboard">
         {alphabetList}
       </section>
-      <button className="newGame">New Game</button>
+      {isGameOver ? <button className="newGame" onClick={newGame}>New Game</button> : undefined}
     </main>
   )
+}
+
+function getRandomWord() {
+  return words[Math.floor(Math.random() * words.length)].toUpperCase()
 }
