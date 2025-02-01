@@ -37,7 +37,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
           <PrismicRichText field={slice.primary.body} components={components}/>
           <Button field={slice.primary.button_link} className="mb-8 md:mb-10" >
             {slice.primary.button_text}</Button>
-          <PrismicNextImage field={slice.primary.image} className="drop-shadow-xl max-w-4xl w-full" alt="fatass"/>
+          <PrismicNextImage field={slice.primary.image} className="drop-shadow-xl max-w-4xl w-full"/>
         </div>
     </Bounded>
   );
