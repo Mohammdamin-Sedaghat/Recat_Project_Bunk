@@ -15,7 +15,6 @@ export default function Heading({
     children,
     size = "lg"
 }: HeadingProps) {
-    console.log("fatass")
 
     return (
         <Comp className={clsx("font-bold leading-tight tracking-tight font-display text-slate-700", 
