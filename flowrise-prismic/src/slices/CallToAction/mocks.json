@@ -1,0 +1,45 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Program"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Velit occaecat sint sunt consectetur Lorem aliqua aliquip irure aute. Ipsum laborum et aliquip magna proident est est culpa aliquip aliqua."
+						}
+					}
+				]
+			},
+			"buttonlink": {
+				"key": "59b1c610-57da-4632-a7f1-0b5d7ae26407",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "plate"
+				}
+			},
+			"buttontext": {
+				"__TYPE__": "FieldContent",
+				"value": "tape",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]
