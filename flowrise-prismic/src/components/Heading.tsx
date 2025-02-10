@@ -1,4 +1,3 @@
-import { PrismicRichText } from "@prismicio/react";
 import clsx from "clsx";
 
 type HeadingProps = {
